@@ -1,0 +1,19 @@
+<odoo>
+
+    <record id="payment_acquirer_form" model="ir.ui.view">
+        <field name="name">PayLocal Acquirer Form</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.payment_acquirer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="acquirer"]' position='inside'>
+                <group attrs="{'invisible': [('provider', '!=', 'paylocal')]}">
+                    <field name="paylocal_api_url"/>
+                    <field name="paylocal_api_user"/>
+                    <field name="paylocal_api_pass" password="1"/>
+                    <field name="paylocal_merchant_gateway"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

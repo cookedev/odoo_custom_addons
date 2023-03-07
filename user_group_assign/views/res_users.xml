@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id="res_users_view_form_group_assign" model="ir.ui.view">
+        <field name="name">res.users.view.form.groups</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='access_rights']" position="inside">
+                    <group name="user_group_control" string="User Control" attrs="{'invisible': [('show_user_access', '=', False)]}">
+                        <strong class="oe_edit_only">This user must have 'Administration > Access Rights' for these to take effect.</strong>
+                        <separator/>
+                        <group>
+                            <field name="user_manager_ids" widget="many2many_tags"/>
+                            <field name="manager_of_ids" widget="many2many_tags"/>
+                            <field name="show_user_access" invisible="1"/>
+                            <field name="assignable_groups_inherit"/>
+                            <field name="assignable_groups_domain" invisible="1"/>
+                            <field name="assignable_group_ids" options="{'no_create': True}" widget="many2many_tags"
+                                   attrs="{'invisible': [('assignable_groups_inherit', '=', True)]}"/>
+                        </group>
+                    </group>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
